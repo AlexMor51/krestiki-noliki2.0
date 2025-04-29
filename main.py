@@ -9,12 +9,13 @@ current_player = "X"
 buttons =[]
 
 def check_winner():  #функция победы
-    #проверка по горизонтали
-    if buttons[i][0]["text"] == buttons[i][1]["text"] == buttons[i][2]["text"] != "":
-        return True
-    #проверка по вертикали
-    if buttons[0][i]["text"] == buttons[1][i]["text"] == buttons[2][i]["text"] != "":
-        return True
+    for i in range(3):
+        #проверка по горизонтали
+        if buttons[i][0]["text"] == buttons[i][1]["text"] == buttons[i][2]["text"] != "":
+            return True
+        #проверка по вертикали
+        if buttons[0][i]["text"] == buttons[1][i]["text"] == buttons[2][i]["text"] != "":
+            return True
     #проверка 1-ой диагонали
     if buttons[0][0]["text"] == buttons[1][1]["text"] == buttons[2][2]["text"] != "":
         return True
