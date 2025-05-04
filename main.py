@@ -34,6 +34,8 @@ def on_click(row,col):   #рисование в клетке Х или 0
     if check_winner():
         #объявление о победе текущего игрока
         t1.insert(1.0,f"Выигрыш {current_player}")
+    elif all(buttons[i][j]['text'] != "" for i in range(3) for j in range(3)):
+        t1.insert(1.0,"Ничья")
 
     current_player = "O" if current_player == "X" else "X"
 
@@ -85,3 +87,4 @@ l3.grid(row=7,column=1)
 t4.grid(row=8,column=0,columnspan=3)
 
 window.mainloop()
+
