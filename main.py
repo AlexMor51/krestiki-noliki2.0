@@ -10,7 +10,6 @@ r_var.set(False)
 current_player = "X"
 buttons =[]
 
-
 def check_winner():  #функция победы
     for i in range(3):
         #проверка по горизонтали
@@ -27,19 +26,16 @@ def check_winner():  #функция победы
         return True
     return False
 
-
 def on_click(row,col):   #рисование в клетке Х или 0
     global current_player
     if buttons[row][col]['text'] != "":
         return
     buttons[row][col]['text'] = current_player
-
     if check_winner():
         #объявление о победе текущего игрока
-        pass
+        t1.insert(1.0,f"Выигрыш {current_player}")
 
     current_player = "O" if current_player == "X" else "X"
-
 
 #создание игрового поля
 for i in range(3):
