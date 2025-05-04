@@ -39,6 +39,12 @@ def on_click(row,col):   #рисование в клетке Х или 0
 
     current_player = "O" if current_player == "X" else "X"
 
+#сброс игры
+def reset():
+    for i in range(3):
+         for j in range(3):
+             buttons[i][j]['text']=""
+
 #создание игрового поля
 for i in range(3):
     row = []
@@ -62,7 +68,7 @@ l2=Label(text="Счет",font=("Arial", 14))
 t3=Text(width=3,height=1)
 
 #Кнопка сброса
-btn1=Button(text="Сброс",font=("Arial", 14))
+btn1=Button(text="Сброс",font=("Arial", 14),command=reset)
 
 #Пустая срока
 l3=Label(text="")
