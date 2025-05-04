@@ -8,6 +8,8 @@ r_var = BooleanVar()
 r_var.set(False)
 
 current_player = "X"
+count_X=0
+count_O=0
 buttons =[]
 
 def check_winner():  #функция победы
@@ -28,14 +30,33 @@ def check_winner():  #функция победы
 
 def on_click(row,col):   #рисование в клетке Х или 0
     global current_player
+    global count_X
+    global count_O
     if buttons[row][col]['text'] != "":
         return
     buttons[row][col]['text'] = current_player
+
     if check_winner():
         #объявление о победе текущего игрока
-        t1.insert(1.0,f"Выигрыш {current_player}")
-    elif all(buttons[i][j]['text'] != "" for i in range(3) for j in range(3)):
+        if current_player=="X":
+            count_X +=1
+            t1.delete(1.0, END)
+            t1.insert(1.0, f"Выигрыш {current_player}")
+            t2.delete(1.0, END)
+            t2.insert(1.0, str(count_X))
+            reset()
+        else:
+            count_O +=1
+            t1.delete(1.0, END)
+            t1.insert(1.0, f"Выигрыш {current_player}")
+            t3.delete(1.0, END)
+            t3.insert(1.0, str(count_O))
+            reset()
+
+    if all(buttons[i][j]['text'] != "" for i in range(3) for j in range(3)):
+        t1.delete(1.0,END)
         t1.insert(1.0,"Ничья")
+        reset()
 
     current_player = "O" if current_player == "X" else "X"
 
@@ -74,7 +95,7 @@ btn1=Button(text="Сброс",font=("Arial", 14),command=reset)
 l3=Label(text="")
 
 #Объявление победителя
-t4=Text(width=28,height=1)
+t4=Text(width=28,height=1,fg="red")
 
 r1.grid(row=3,column=0)
 l1.grid(row=3,column=1)
@@ -83,8 +104,10 @@ r2.grid(row=3,column=2)
 t1.grid(row=4,column=0,columnspan=3)
 
 t2.grid(row=5,column=0)
+t2.insert(1.0,"0")
 l2.grid(row=5,column=1)
 t3.grid(row=5,column=2)
+t3.insert(1.0,"0")
 
 btn1.grid(row=6,column=1)
 
@@ -93,4 +116,3 @@ l3.grid(row=7,column=1)
 t4.grid(row=8,column=0,columnspan=3)
 
 window.mainloop()
-
