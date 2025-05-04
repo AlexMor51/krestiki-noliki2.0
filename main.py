@@ -44,6 +44,8 @@ def on_click(row,col):   #рисование в клетке Х или 0
             t1.insert(1.0, f"Выигрыш {current_player}")
             t2.delete(1.0, END)
             t2.insert(1.0, str(count_X))
+            if count_X==3:
+                t4.insert(1.0,f"Игрок {current_player} победил")
             reset()
         else:
             count_O +=1
@@ -51,6 +53,8 @@ def on_click(row,col):   #рисование в клетке Х или 0
             t1.insert(1.0, f"Выигрыш {current_player}")
             t3.delete(1.0, END)
             t3.insert(1.0, str(count_O))
+            if count_O==3:
+                t4.insert(1.0, f"Игрок {current_player} победил")
             reset()
 
     if all(buttons[i][j]['text'] != "" for i in range(3) for j in range(3)):
